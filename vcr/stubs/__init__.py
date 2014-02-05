@@ -66,6 +66,10 @@ class VCRHTTPResponse(object):
         headers = parse_headers(self.recorded_response['headers'])
         return headers.dict.iteritems()
 
+    def getheader(self, header, default=None):
+        header = header.lower()
+        return self.msg.dict.get(header, default)
+
 
 class VCRConnectionMixin:
     # A reference to the cassette that's currently being patched in
